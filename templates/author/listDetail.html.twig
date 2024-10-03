@@ -1,0 +1,42 @@
+<h1>Détails de l'auteur</h1>
+
+<style>
+    body {
+        background-color: #FAEBD7; 
+    }
+    .author-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+        font-family: Arial, sans-serif;
+    }
+    .author-details img {
+        border-radius: 50%;
+        width: 300px;
+        height: 300px;
+        margin-bottom: 20px;
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    p {
+        font-size: 1.2em;
+        color: #666;
+    }
+    .email {
+        color: #007bff;
+    }
+</style>
+
+<div class="author-details">
+    <h1>Author: {{ author.username }}</h1>
+    <img src="{{ asset(author.picture) }}" alt="Photo de {{ author.username }}">
+    <p>Email : <span class="email">{{ author.email }}</span></p>
+    <p>Nombre de livres : {{ author.nb_books }}</p>
+    <div class="links">
+        <p>Vous pouvez consulter mon code source sur <a href="https://github.com/votre-repo" target="_blank">GitHub</a>.</p>
+        <p>Et voir le dossier de projet sur <a href="https://drive.google.com/drive/folder-id" target="_blank">Google Drive</a>.</p>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<h1>Liste des auteurs</h1>
+
+<style>
+    table {
+        width: 100%; 
+        max-width: 800px; 
+        border-collapse: collapse;
+        margin: 20px auto; 
+        font-size: 1.2em;
+        text-align: left;
+        background-color: #f9f9f9; 
+    }
+    th {
+        background-color: #343a40; 
+        color: #ffffff; 
+        padding: 12px 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: bold;
+    }
+    td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        color: #333; 
+    }
+    img {
+        width: 180px;
+        height: 180px;
+        border-radius: 5%;
+        }
+    a {
+        color: #007bff; 
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+        font-family: Arial, sans-serif;
+    }
+    .summary {
+        margin: 20px 0;
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: center; 
+    }
+</style>
+
+{% if authors is not defined or authors is empty %}
+    <h1>Aucun auteur n'est disponible</h1>
+{% else %}
+    <table>
+        <tr>
+            <th>Nom de l'auteur</th>
+            <th>Image</th>
+            <th>Détails</th>
+        </tr>
+        
+        {% for author in authors %}
+        <tr>
+            <td>{{ author.username | upper }}</td>
+            <td><img src="{{ asset(author.picture) }}" alt="Image de {{ author.username }}"></td>
+            <td><a href="{{ path('app_details', {'id': author.id}) }}">Détails</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="summary">
+        <p>Le nombre des auteurs est {{ authors | length }}</p>
+
+        {% set total_livre = 0 %}
+        {% for author in authors %}
+            {% set total_livre = total_livre + author.nb_books %}
+        {% endfor %}
+        <p>Nombre total des livres est {{ total_livre }}</p>
+    </div>
+{% endif %}
